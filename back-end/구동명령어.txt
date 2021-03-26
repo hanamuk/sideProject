@@ -1,0 +1,2 @@
+1. React 로컬에서 돌릴때 node.js 구동명령어는
+해당 react 파일이 있는곳으로 cd 이동후 npm start
