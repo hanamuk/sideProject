@@ -1,0 +1,33 @@
+2021.04.05.(월) 강은비 일일보고
+
+리엑트는 props나 state가 바뀌면 해당되는 render 함수가 호출되도록 지정되어 있음
+
+return (
+      <div className="App">
+        <header>
+          <h1><a href="/" onClick={function(e){
+            console.log(e);
+            e.preventDefault();
+            this.state.mode = 'welcome';
+            this.setState({
+              mode: 'welcome'
+            });
+          }.bind(this)}>{this.state.subject.title}</a></h1>
+          {this.state.subject.sub}
+        </header>
+        <TOC data={this.state.contents}></TOC>
+        <Content title={_title} desc={_desc}></Content>
+      </div>
+    );
+  }
+
+=============================================================
+
+event
+
+onClick -> react의 약속
+
+debugger; -> 실행을 멈춘다. 이후 소스
+e.preventDefault(); -> 태그의 기본적인 동작을 제어
+
+this.를 찾을 수 없다면 해당 함수의 마지막에 bind(this) 를 추가하기
