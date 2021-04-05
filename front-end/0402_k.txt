@@ -1,0 +1,56 @@
+0402 강은비 
+
+생활코딩 15.3강 까지 수강
+
+state: 상태를 표시
+
+constructor(props){  //클래스 APP를 시작할 때 초기화 시키는 부분
+    super(props);   //객체지향에서 super는 부모객체를 뜻한다..
+    this.state = {   //자기 자신에서 state를 설정한다
+      subject:{title:'WEB', sub:'World Wide Web'},   //subject라는 하위 항목의 내용 설정
+      contents:[   //contents라는 하위 항목을 배열로 만들어 내용 설정
+        {id:1, title:'HTML', desc:'HTML is HyperText ...'},
+        {id:2, title:'CSS', desc:'CSS is for design ...'},
+        {id:3, title:'JavaScript', desc:'JavaScript is for interactive ...'}
+      ]
+    }
+  }
+
+==========================================================================================
+
+render(){  //APP 클래스의 실행부분
+    return (   //아래의 값을 보내준다
+      <div className="App">
+        <Subject 
+          title={this.state.subject.title}   //초기화된 값의 경로를 찾아 subject의 title 출력
+          sub={this.state.subject.sub}>   //변수화 시켰다.
+        </Subject>
+        <TOC data={this.state.contents}></TOC>   //contents 부분을 출력
+        <Content title="HTML" desc="HTML is HyperText Markup Language."></Content>
+      </div>
+    );
+  }
+
+==========================================================================================
+
+class TOC extends Component {
+    render(){
+      var lists = [];   //lists 라는 배열 생성
+      var data = this.props.data;   //data라는 변수의 값을 this.props.data 로 설정
+      var i = 0;   //변수 i의 값을 0으로 초기화
+      while(i < data.length){
+        lists.push(<li key={data[i].id}><a href={"/content/"+data[i].id}>{data[i].title}</a></li>);
+         // 반복문을 사용해 lists 배열에 새로운 값을 추가. <li>를 사용해 리스트를 만들고 key로 고유값을 설정.
+         // 하이퍼 링크를 통해 i로 설정된 부분의 값을 출력할 수 있게 함.
+        i = i + 1;
+      }
+      return(
+        <nav>
+          <ul>
+            {lists}
+          </ul>
+        </nav>
+      );
+    }
+  }
+
